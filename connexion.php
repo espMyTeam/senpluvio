@@ -1,24 +1,14 @@
 <?php
-	require("config.php");
-	$req = "mysql:host=" . HOSTNAME . ";dbname=" . BASENAME . "";
-	$base="";
-	try
-	{
-		$base = new PDO($req, USERNAME, PASSWORD);
+$user="root";
+$password="passer";
 
-		//echo "reussi";
-	}catch(Exception $e){
-		echo "erreur: " . $e->getMessage();
-	}
-
+try{
+	$bdd = new PDO('mysql:host=localhost;dbname=pluvio',$user,$password);
 	
-	$req = "SET NAMES UTF8";
-	try
-	{
-		$envoie=$base->prepare($req);
-		$envoie->execute();
-
-	}catch(Exception $e){
-		echo "erreur : " . $e->getMessage();
-	}
+  }
+catch(PDOException $e)
+  {
+	print "Erreur : ".$e->getMessage() ."<br/>";
+	die();
+ }  	
 ?>
